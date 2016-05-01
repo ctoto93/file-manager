@@ -1,6 +1,6 @@
 {
   "name": "file-manager",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Node.js save and remove files never been this easy",
   "main": "index.js",
   "scripts": {

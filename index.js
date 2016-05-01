@@ -1,9 +1,10 @@
 var mkdirp = require('mkdirp'),
     fs = require('fs'),
     async = require('async');
+    BASE_DIR = process.env.PWD;
 
 exports.upload = function upload(path, fileName, data, callback) {
-    path = sprintf("%s%s", constants.BASE_DIR, path);
+    path = sprintf("%s%s", BASE_DIR, path);
     console.log(path);
     async.series([
             function checkPathExist(callback) {
@@ -25,7 +26,7 @@ exports.upload = function upload(path, fileName, data, callback) {
                 console.log(fileDir);
                 fs.writeFile(fileDir, data, 'base64', function(err) {
                     if (err) return callback(err);
-                    console.log(sprintf("Success saved image to path %s", fileDir));
+                    console.log(sprintf("Success save file to path %s", fileDir));
                     callback(null);
                 });
 
@@ -37,14 +38,14 @@ exports.upload = function upload(path, fileName, data, callback) {
 };
 
 exports.remove = function remove(path, fileName, callback) {
-    path = sprintf("%s%s/%s", constants.BASE_DIR, path, fileName);
+    path = sprintf("%s%s/%s", BASE_DIR, path, fileName);
     fs.exists(path, function(exists) {
         if (exists) {
             //Show in green
             fs.unlinkSync(path);
             callback(true);
         } else {
-            callback(false);
+            callback("File not exist");
         }
     });
 };

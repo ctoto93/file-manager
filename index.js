@@ -1,7 +1,8 @@
 var mkdirp = require('mkdirp'),
     fs = require('fs'),
-    async = require('async');
-    BASE_DIR = process.env.PWD;
+    async = require('async'),
+    BASE_DIR = process.env.PWD,
+    sprintf = require('sprintf-js').sprintf;
 
 exports.upload = function upload(path, fileName, data, callback) {
     path = sprintf("%s%s", BASE_DIR, path);
